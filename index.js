@@ -1,14 +1,35 @@
 const grid = document.getElementById("grid-container");
-const gridSizeWidth = [22, 44, 100]
-const gridSizeHeight = [16, 38, 60]
+const gridSquareSize = [16, 32, 64];
 
-for (let i = 0; i < gridSizeHeight[1]; i++) {
-  for (let j = 0; j < gridSizeWidth[1]; j++) {
-    const newDiv = document.createElement("div");
-    newDiv.className = "grid-square";
-    grid.appendChild(newDiv);
+const renderGrid = (gridSize) => {
+  const squareWidth = 100 / gridSize + "%";
+  const squareHeight = 100 / gridSize + "%";
+
+  grid.innerHTML = "";
+
+  for (let i = 0; i < gridSize; i++) {
+    for (let j = 0; j < gridSize; j++) {
+      const newDiv = document.createElement("div");
+      newDiv.className = "grid-square";
+      newDiv.style.width = squareWidth;
+      newDiv.style.height = squareHeight;
+      grid.appendChild(newDiv);
+    }
   }
-}
+};
 
-// grid.style.width = `${gridSizeWidth}rem`;
-// grid.style.height = `${gridSizeHeight}rem`
+document.addEventListener("DOMContentLoaded", renderGrid(gridSquareSize[1]));
+
+const densityButtons = document.querySelectorAll(".density-button");
+const densityButtonsArray = Array.from(densityButtons);
+const modeButtons = document.querySelectorAll(".mode-button");
+
+densityButtonsArray.forEach((element) => {
+  element.addEventListener("click", () => {
+    if (!element.classList.contains("button-active")) {
+      densityButtonsArray.forEach((btn) => btn.classList.remove("button-active"));
+      element.classList.add("button-active");
+      renderGrid(gridSquareSize[densityButtonsArray.indexOf(element)]);
+    }
+  });
+});
