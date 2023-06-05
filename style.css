@@ -43,6 +43,12 @@ body {
   border: 0.1px solid #aaaaaa;
 }
 
+.square-drawn {
+  background-color: #707070;
+  /* background-color: #9E9E9E; */
+  /* background-color: #000; */
+}
+
 .button-heading {
   color: #fff;
   font-weight: 700;
@@ -70,8 +76,9 @@ body {
 .button {
   background-color: #fff;
   text-align: center;
+  font-weight: 700;
   width: fit-content;
-  padding: 5px;
+  padding: 5px 10px;
   border-radius: 5px;
   transition: all linear 0.2s;
 }
@@ -83,4 +90,9 @@ body {
 
 .button-active {
   background-color: #ffed65;
+}
+
+#erase {
+  color: #ff5e5b;
+  font-weight: 900;
 }
